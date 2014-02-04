@@ -1,0 +1,4 @@
+@prefix : <http://marklogic.com/example/>.
+:me a :Student ;
+   :nickname "Charles" ;
+   :title "This is my title." .

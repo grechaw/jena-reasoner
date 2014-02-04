@@ -1,0 +1,6 @@
+@prefix : <http://marklogic.com/example/>.
+@prefix rdfs:    		<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    		<http://www.w3.org/2002/07/owl#> .
+:this a owl:Ontology .
+:studentsTopic rdfs:label "Articles about Students" ;
+   a :NavigationConcept .

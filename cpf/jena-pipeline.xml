@@ -1,0 +1,58 @@
+<!-- Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved. -->
+<?xml-stylesheet href="/cpf/pipelines.css" type="text/css"?>
+<pipeline xmlns="http://marklogic.com/cpf/pipelines"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://marklogic.com/cpf/pipelines pipelines.xsd"
+>
+   <pipeline-name>Reasoning</pipeline-name>
+   <pipeline-description>Call out to jena service for inferencing with RDF.</pipeline-description>
+   <success-action>
+       <module>/MarkLogic/cpf/actions/success-action.xqy</module>
+   </success-action>
+   <failure-action>
+       <module>/MarkLogic/cpf/actions/failure-action.xqy</module>
+   </failure-action>
+
+   <state-transition>
+      <annotation>
+          New triples have been uploaded.  Send them to pre-configured 
+          jena service.  Puts dependent documents into updated state
+      </annotation>
+      <state>http://marklogic.com/states/initial</state>
+      <on-success>http://marklogic.com/states/reasoned</on-success>
+      <on-failure>http://marklogic.com/states/error</on-failure>
+      <priority>9100</priority>
+      <default-action>
+          <module>/ext/actions/jena-service-action.xqy</module>
+      </default-action>
+   </state-transition>
+
+   <state-transition>
+      <annotation>
+          Turtle document has been updated.  Send it to pre-configured 
+          jena service.  Puts dependent documents into updated state
+      </annotation>
+      <state>http://marklogic.com/states/updated</state>
+      <on-success>http://marklogic.com/states/reasoned</on-success>
+      <on-failure>http://marklogic.com/states/error</on-failure>
+      <priority>9100</priority>
+      <default-action>
+          <module>/ext/actions/jena-service-action.xqy</module>
+      </default-action>
+   </state-transition>
+
+   <state-transition>
+      <annotation>
+          An ontology update has marked a document as needing re-submission to
+          jena service.  
+      </annotation>
+      <state>http://marklogic.com/states/ontology-updated</state>
+      <on-success>http://marklogic.com/states/reasoned</on-success>
+      <on-failure>http://marklogic.com/states/error</on-failure>
+      <priority>9100</priority>
+      <default-action>
+          <module>/ext/actions/jena-service-action.xqy</module>
+      </default-action>
+   </state-transition>
+
+</pipeline>

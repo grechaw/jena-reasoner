@@ -1,0 +1,13 @@
+@prefix : <http://marklogic.com/example/>.
+@prefix rdfs:    		<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    		<http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+:this a owl:Ontology .
+:Student rdfs:subClassOf :Person .
+:Person a owl:Class .
+:nickname rdfs:subPropertyOf :name .
+:name rdfs:label "Name" ;
+  a owl:DatatypeProperty .
+:title rdfs:domain :Titleable .
+:title rdfs:range xsd:string .
+:Titleable a owl:Class .
