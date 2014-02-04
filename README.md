@@ -2,7 +2,7 @@
 
 This project contains a clojure project and MarkLogic Server that supports a basic inferencing scenario, in which a customer relies on materialized inferences for their data architecture.
 
-The clojure app is a standalone web server that wraps a reasoner and an ontology-based annotator.
+The clojure app is a standalone web server that wraps Jena's reasoning support.
 
 ## Requires Java 7 JDK
 
